@@ -1,0 +1,123 @@
+body {
+  margin: 0;
+  background: #1e1e1e;
+  font-family: "Poppins", sans-serif;
+}
+
+.scene {
+  perspective: 1400px;
+}
+
+.envelope-wrapper {
+  width: 340px;
+  height: 220px;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+/* BASE DO ENVELOPE (AGORA É A MÁSCARA) */
+.envelope {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  position: absolute;
+  bottom: 0;
+  z-index: 3;
+  overflow: hidden; /* 🔥 ISSO É O SEGREDO */
+}
+
+/* ABA */
+.flap {
+  width: 100%;
+  height: 100%;
+  background: #6b21a8;
+  position: absolute;
+  top: 0;
+  transform-origin: top;
+  transition: transform 1s ease;
+  clip-path: polygon(0 0, 100% 0, 50% 60%);
+  border-radius: 8px;
+  z-index: 4;
+  backface-visibility: hidden;
+}
+
+/* CARTA */
+.carta {
+  position: absolute;
+  left: 5%;
+  bottom: -220px; /* completamente fora */
+  width: 90%;
+  height: 190px;
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  transition:
+    bottom 1s ease,
+    transform 0.8s ease;
+  z-index: 2;
+  overflow: hidden;
+  color: #111;
+}
+
+/* ETAPA 1 */
+.open-flap .flap {
+  transform: rotateX(-180deg);
+}
+
+/* ETAPA 2 - PAPEL SOBE MAS AINDA ESCONDIDO */
+.raise-paper .carta {
+  bottom: 20px;
+}
+
+/* ETAPA 3 - PAPEL VEM PRA FRENTE */
+.front-paper .carta {
+  transform: translateY(-80px);
+  z-index: 5;
+}
+
+.fullscreen-card {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 85vw !important;
+  height: 85vh !important;
+  transition: all 0.8s ease;
+  border-radius: 24px !important;
+  z-index: 9999 !important;
+}
+
+.overlay-dark {
+  position: fixed;
+  inset: 0;
+  background: black;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  z-index: 9000;
+}
+
+.overlay-dark.active {
+  opacity: 0.85;
+}
+
+.album-img {
+  object-fit: cover;
+  aspect-ratio: 4/4;
+  border-radius: 6px;
+  padding: 8px;
+  background: white;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transform: scale(0.8) rotate(var(--rot, 0deg));
+  transition: all 0.6s ease;
+}
+
+.album-img.show {
+  opacity: 1;
+  transform: scale(1) rotate(var(--rot, 0deg));
+}
+
+.album-img:hover {
+  transform: scale(1.1) rotate(var(--rot, 0deg));
+  z-index: 100;
+}

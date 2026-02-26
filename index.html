@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>desafio-final.js</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+
+  <body class="text-white">
+    <!-- TOP BAR -->
+    <div
+      class="bg-[#323233] px-4 py-2 flex justify-between items-center text-sm"
+    >
+      <span>desafio-final.js</span>
+    </div>
+
+    <!-- EDITOR CONTAINER -->
+    <div id="editorSection" class="flex h-[calc(100vh-40px)]">
+      <div class="flex-1 flex flex-col">
+        <div class="bg-yellow-600 text-black px-4 py-2 text-sm">
+          ⚠ O código possui erros que impedem a execução. Corrija e tente
+          novamente.
+        </div>
+
+        <textarea
+          id="editor"
+          class="flex-1 bg-[#1e1e1e] text-white p-6 outline-none resize-none font-mono text-sm"
+          spellcheck="false"
+        >
+
+export default class Pizza {
+  constructor(diametro, espessura) {
+    this.raio = diametro;
+    this.altura = espessura;
+    this.densidade = 0.85;
+  }
+
+  calcularAreaBase() {
+    let area = Math.PI * this.raio * this.raio;
+    return area;
+  }
+
+  calcularVolume() {
+    let volume = this.calcularArea() * this.altura;
+    return volume;
+  }
+
+  getPesoUnitario() {
+    return this.calcularVolume() * this.densidade;
+  }
+}
+
+      </textarea
+        >
+
+        <div class="bg-[#252526] p-3 flex justify-between items-center">
+          <button
+            onclick="compilar()"
+            class="bg-blue-600 px-4 py-2 rounded hover:bg-blue-700 transition"
+          >
+            ▶ Run
+          </button>
+        </div>
+
+        <!-- Erros -->
+        <div
+          class="bg-[#252526] px-4 py-1 text-sm text-red-400 flex justify-between"
+        >
+          <span>Problems</span>
+          <span id="contador">Erros: 0</span>
+        </div>
+
+        <!-- Terminal -->
+        <div
+          id="terminal"
+          class="bg-black text-gray-300 p-4 text-sm h-40 overflow-auto whitespace-pre-line"
+        >
+          Terminal pronto...
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div id="timelineSection" class="hidden bg-[#0f0f0f] min-h-screen py-32">
+      <div class="relative max-w-6xl mx-auto px-10">
+        <!-- Linha central -->
+        <div
+          class="absolute left-1/2 top-0 w-1 bg-gray-700 h-full -translate-x-1/2"
+        ></div>
+
+        <!-- ITEM 1 -->
+        <div
+          class="timeline-item flex items-center mb-40 opacity-0 translate-y-10 transition duration-700"
+        >
+          <div class="w-1/2 pr-16 text-right">
+            <h3 class="text-3xl font-bold">Primeiros Códigos</h3>
+            <p class="text-gray-400 mt-3">Onde tudo começou...</p>
+          </div>
+          <div class="w-1/2 pl-16 flex justify-start">
+            <img
+              src="./img/portugol.jpeg"
+              class="rounded-2xl shadow-2xl w-[420px] object-cover"
+            />
+          </div>
+        </div>
+
+        <!-- ITEM 2 -->
+        <div
+          class="timeline-item flex items-center mb-40 opacity-0 translate-y-10 transition duration-700"
+        >
+          <div class="w-1/2 pr-16 flex justify-end">
+            <img
+              src="./img/protoboard.jpeg"
+              class="rounded-2xl shadow-2xl w-[420px] object-cover"
+            />
+          </div>
+          <div class="w-1/2 pl-16">
+            <h3 class="text-3xl font-bold">Iniciando na eletrônica</h3>
+            <p class="text-gray-400 mt-3">O protoboard de cada dia</p>
+          </div>
+        </div>
+
+        <!-- ITEM 3 -->
+        <div
+          class="timeline-item flex items-center mb-40 opacity-0 translate-y-10 transition duration-700"
+        >
+          <div class="w-1/2 pr-16 text-right">
+            <h3 class="text-3xl font-bold">
+              1 LED é bom, mas 3 é melhor ainda
+            </h3>
+            <p class="text-gray-400 mt-3">Arduino e potenciômetro</p>
+          </div>
+          <div class="w-1/2 pl-16 flex justify-start">
+            <img
+              src="./img/arduino.jpeg"
+              class="rounded-2xl shadow-2xl w-[360px] object-cover"
+            />
+          </div>
+        </div>
+
+        <!-- ITEM 4 -->
+        <div
+          class="timeline-item flex items-center mb-40 opacity-0 translate-y-10 transition duration-700"
+        >
+          <div class="w-1/2 pr-16 flex justify-end">
+            <img
+              src="./img/interclasse.jpeg"
+              class="rounded-2xl shadow-2xl w-[420px] object-cover"
+            />
+          </div>
+          <div class="w-1/2 pl-16">
+            <h3 class="text-3xl font-bold">Interclasse com o melhor coach</h3>
+            <p class="text-gray-400 mt-3">&lt;3</p>
+          </div>
+        </div>
+
+        <!-- FINAL -->
+        <div
+          class="timeline-item text-center mt-48 opacity-0 translate-y-10 transition duration-700"
+        >
+          <h2 class="text-4xl font-bold text-purple-400">
+            Falta só mais um passo
+          </h2>
+
+          <button
+            onclick="abrirCarta3D()"
+            class="mt-12 bg-yellow-500 px-12 py-5 rounded-2xl text-black font-bold text-xl hover:scale-105 transition"
+          >
+            Clique aqui!
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/script.js"></script>
+  </body>
+</html>
