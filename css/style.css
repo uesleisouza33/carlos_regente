@@ -15,7 +15,7 @@ body {
   transform-style: preserve-3d;
 }
 
-/* BASE DO ENVELOPE (AGORA É A MÁSCARA) */
+/* BASE DO ENVELOPE */
 .envelope {
   width: 100%;
   height: 100%;
@@ -23,7 +23,7 @@ body {
   position: absolute;
   bottom: 0;
   z-index: 3;
-  overflow: hidden; /* 🔥 ISSO É O SEGREDO */
+  overflow: hidden;
 }
 
 /* ABA */
@@ -64,12 +64,12 @@ body {
   transform: rotateX(-180deg);
 }
 
-/* ETAPA 2 - PAPEL SOBE MAS AINDA ESCONDIDO */
+/* ETAPA 2 */
 .raise-paper .carta {
   bottom: 20px;
 }
 
-/* ETAPA 3 - PAPEL VEM PRA FRENTE */
+/* ETAPA 3 - */
 .front-paper .carta {
   transform: translateY(-80px);
   z-index: 5;
